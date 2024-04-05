@@ -11,7 +11,8 @@ const cron_1 = require("cron");
 const initWhatsapp_1 = require("../../initWhatsapp");
 exports.sendOrderRequest = new cron_1.CronJob('59 * * * * *', async () => {
     try {
-        const orderRequests = await orderRequest_1.default.find({ EstadoEnvio: 'Pendiente' });
+        let orderRequests = await orderRequest_1.default.findOne({ EstadoEnvio: 'Pendiente' });
+        orderRequests = orderRequests ? [orderRequests] : [];
         for (const request of orderRequests) {
             let message = '*Solicitudes de ordenes de compra para revisión*\n\n';
             const order = await purchaseOrders_1.default.findOne({ Numero: request.NumeroOrden });

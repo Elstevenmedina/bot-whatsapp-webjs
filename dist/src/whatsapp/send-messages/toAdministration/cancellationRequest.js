@@ -10,7 +10,8 @@ const initWhatsapp_1 = require("../../initWhatsapp");
 const ManagementWhatsappNumbers_1 = require("../../../enums/ManagementWhatsappNumbers");
 exports.sendCancellationsRequest = new cron_1.CronJob('* * * * *', async () => {
     try {
-        const cancellationRequests = await cancellationRequest_1.default.find({ Estado: 'Pendiente' });
+        let cancellationRequests = await cancellationRequest_1.default.find({ Estado: 'Pendiente' });
+        cancellationRequests = cancellationRequests ? [cancellationRequests] : [];
         const whatsappNumber = ManagementWhatsappNumbers_1.ManagementWhatsappNumbers.Management1;
         for (const request of cancellationRequests) {
             const message = `*Nueva solicitud de anulación*\n\n

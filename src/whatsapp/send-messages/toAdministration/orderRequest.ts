@@ -7,7 +7,8 @@ import { sendMessage } from '../../initWhatsapp'
 
 export const sendOrderRequest = new CronJob('59 * * * * *', async () => {
   try {
-    const orderRequests: OrderRequest[] = await OrderRequestModel.find({ EstadoEnvio: 'Pendiente' })
+    let orderRequests: OrderRequest | OrderRequest[] | null | any[] = await OrderRequestModel.findOne({ EstadoEnvio: 'Pendiente' })
+    orderRequests = orderRequests ? [orderRequests] : []
     for (const request of orderRequests) {
       let message: string = '*Solicitudes de ordenes de compra para revisión*\n\n'
       const order: PurchaseOrders | null = await PurchaseOrderModel.findOne({ Numero: request.NumeroOrden })

@@ -6,7 +6,9 @@ import { ManagementWhatsappNumbers } from '../../../enums/ManagementWhatsappNumb
 
 export const sendCancellationsRequest = new CronJob('* * * * *', async () => {
   try {
-    const cancellationRequests: CancellationRequest[] = await CancellationRequestModel.find({ Estado: 'Pendiente' })
+    let cancellationRequests: CancellationRequest | CancellationRequest[] | any[] | null = await CancellationRequestModel.find({ Estado: 'Pendiente' })
+
+    cancellationRequests = cancellationRequests ? [cancellationRequests] : []
 
     const whatsappNumber: string = ManagementWhatsappNumbers.Management1
 
