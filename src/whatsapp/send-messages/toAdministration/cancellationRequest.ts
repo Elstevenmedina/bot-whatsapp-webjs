@@ -20,7 +20,7 @@ export const sendCancellationsRequest = new CronJob('* * * * *', async () => {
             *Usuario*: ${request.Usuario}\n\n
             Para aprobar la anulación escribe: *Anular ${request.NumeroDocumento}*
             `
-      sendMessage(whatsappNumber, message)
+      //sendMessage(whatsappNumber, message)
     }
   } catch (err) {
     console.log(err)

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendCancellationsRequest = void 0;
 const cancellationRequest_1 = __importDefault(require("../../../models/cancellationRequest"));
 const cron_1 = require("cron");
-const initWhatsapp_1 = require("../../initWhatsapp");
 const ManagementWhatsappNumbers_1 = require("../../../enums/ManagementWhatsappNumbers");
 exports.sendCancellationsRequest = new cron_1.CronJob('* * * * *', async () => {
     try {
@@ -21,7 +20,7 @@ exports.sendCancellationsRequest = new cron_1.CronJob('* * * * *', async () => {
             *Usuario*: ${request.Usuario}\n\n
             Para aprobar la anulación escribe: *Anular ${request.NumeroDocumento}*
             `;
-            (0, initWhatsapp_1.sendMessage)(whatsappNumber, message);
+            //sendMessage(whatsappNumber, message)
         }
     }
     catch (err) {

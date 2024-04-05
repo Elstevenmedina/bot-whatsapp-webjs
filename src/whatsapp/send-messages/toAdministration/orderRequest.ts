@@ -19,7 +19,7 @@ export const sendOrderRequest = new CronJob('59 * * * * *', async () => {
         const clientData: { NumeroAdministrativo: string } = await ClientModel.findOne({ Empresa: client }).select('NumeroAdministrativo')
 
         message += `*Cliente: ${client}*\n 
-              Numero: ${request.NumeroOrden}\n 
+              Número: ${request.NumeroOrden}\n 
               Monto: ${totalPrice}:\n
               Enlace: https://app.thomsonparts.com/aprobar-rechazar-orden/${request.NumeroOrden} \n\n`
 
@@ -28,7 +28,7 @@ export const sendOrderRequest = new CronJob('59 * * * * *', async () => {
           whatsappNumber,
           message
         })
-        await OrderRequestModel.findOneAndUpdate({ NumeroOrden: request.NumeroOrden }, { EstadoEnvio: 'Enviado' })
+        await OrderRequestModel.findByIdAndUpdate(request._id, { EstadoEnvio: 'Enviado' })
         sendMessage(whatsappNumber, message)
 
       }

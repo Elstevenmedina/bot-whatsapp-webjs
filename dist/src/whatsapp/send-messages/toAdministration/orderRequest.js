@@ -21,7 +21,7 @@ exports.sendOrderRequest = new cron_1.CronJob('59 * * * * *', async () => {
                 const totalPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(order.PrecioTotal);
                 const clientData = await client_1.default.findOne({ Empresa: client }).select('NumeroAdministrativo');
                 message += `*Cliente: ${client}*\n 
-              Numero: ${request.NumeroOrden}\n 
+              Número: ${request.NumeroOrden}\n 
               Monto: ${totalPrice}:\n
               Enlace: https://app.thomsonparts.com/aprobar-rechazar-orden/${request.NumeroOrden} \n\n`;
                 const whatsappNumber = `${clientData === null || clientData === void 0 ? void 0 : clientData.NumeroAdministrativo}@c.us`;
@@ -29,7 +29,7 @@ exports.sendOrderRequest = new cron_1.CronJob('59 * * * * *', async () => {
                     whatsappNumber,
                     message
                 });
-                await orderRequest_1.default.findOneAndUpdate({ NumeroOrden: request.NumeroOrden }, { EstadoEnvio: 'Enviado' });
+                await orderRequest_1.default.findByIdAndUpdate(request._id, { EstadoEnvio: 'Enviado' });
                 (0, initWhatsapp_1.sendMessage)(whatsappNumber, message);
             }
         }
