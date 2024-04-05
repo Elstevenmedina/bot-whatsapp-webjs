@@ -10,7 +10,8 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = 3000;
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-(0, database_1.initDB)(process.env.DB_HOST);
+const DB_HOST = 'mongodb+srv://thomsonmaster:44nmgek9l7xVQvc0@cluster0.5pqic.mongodb.net/myFirstDatabase?authSource=admin&replicaSet=atlas-13kx2b-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true';
+(0, database_1.initDB)(DB_HOST);
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
     //sendMessagesClients.start()
