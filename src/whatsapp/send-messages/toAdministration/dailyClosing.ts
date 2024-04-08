@@ -5,6 +5,6 @@ import { ManagementWhatsappNumbers } from '../../../enums/ManagementWhatsappNumb
 
 export const sendDailyClosing = new CronJob('01 01 21 * * *', async () => { //3
   const dailyClosing = await getDailyClosing()
-  const message = `*Reporte de cierre diario*\n\n *Monto vendido*: ${dailyClosing.amountSold}\*nMonto cobrado*: ${dailyClosing.amountCollected}\*nEgreso por devoluciones*: ${dailyClosing.egressReturn}\*nEgreso por anulaciones*: ${dailyClosing.egressCancellation}\*nEgreso general*: ${dailyClosing.egressGeneral}\*nCuentas por cobrar*: ${dailyClosing.accountsCollect} \n\n`
+  const message = `*Reporte de cierre diario*\n\n *Monto vendido*: ${dailyClosing.amountSold}\n *Monto cobrado*: ${dailyClosing.amountCollected}\n *Egreso por devoluciones*: ${dailyClosing.egressReturn}\n *Egreso por anulaciones*: ${dailyClosing.egressCancellation}\n *Egreso general*: ${dailyClosing.egressGeneral}\n *Cuentas por cobrar*: ${dailyClosing.accountsCollect} \n\n`
   sendMessage(ManagementWhatsappNumbers.Management1, message)
 })
