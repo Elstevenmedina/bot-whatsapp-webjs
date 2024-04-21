@@ -15,7 +15,6 @@ export const sendMessagesClients = new CronJob('01 01 13 * * mon', async () => {
       const total: string = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(+client.Neto.toFixed(2))
       const balance: string = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(+client.Saldo.toFixed(2))
       message += `\nCantidad de notas: ${quantity}\nNeto: ${total}\nSaldo:${balance}\n\n Si ya usted cancelo su deuda hacer caso omiso de este mensaje.`
-      sendMessage('584244577241@c.us', message)
       const numeroCliente = +client.NumeroTelefonico
       const whatsappNumber = `58${numeroCliente}@c.us`
       sendMessage(whatsappNumber, message)

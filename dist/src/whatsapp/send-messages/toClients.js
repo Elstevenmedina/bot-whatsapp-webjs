@@ -16,7 +16,6 @@ exports.sendMessagesClients = new cron_1.CronJob('01 01 13 * * mon', async () =>
             const total = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(+client.Neto.toFixed(2));
             const balance = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(+client.Saldo.toFixed(2));
             message += `\nCantidad de notas: ${quantity}\nNeto: ${total}\nSaldo:${balance}\n\n Si ya usted cancelo su deuda hacer caso omiso de este mensaje.`;
-            (0, initWhatsapp_1.sendMessage)('584244577241@c.us', message);
             const numeroCliente = +client.NumeroTelefonico;
             const whatsappNumber = `58${numeroCliente}@c.us`;
             (0, initWhatsapp_1.sendMessage)(whatsappNumber, message);
